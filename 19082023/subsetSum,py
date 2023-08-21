@@ -1,0 +1,17 @@
+# Given an array of non-negative integers, and a value sum, determine if there is a subset of the given set with sum equal to given sum. 
+
+class Solution:
+    def isSubsetSum (self, N, arr, sum):
+        i=0
+        s=0
+        dic={}
+        def fun(su,i):
+            if i>=len(arr):
+                return 0
+            if (su,i) in dic:
+                return dic[su,i]
+            if su+arr[i]==sum:
+                return 1
+            dic[su,i]=fun(su+arr[i],i+1) or fun(su,i+1)
+            return dic[su,i]
+        return fun(0,0)
